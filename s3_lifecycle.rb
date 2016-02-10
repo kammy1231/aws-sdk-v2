@@ -3,7 +3,6 @@ module Aws
     module Kammy
 
       class S3
-        class << self
           def add_lifecycle(bucketname, ctid, hostname, archive)
             bucketlifecycle = Aws::S3::BucketLifecycle.new(bucketname)
             bucketlifecycle.load
@@ -24,17 +23,16 @@ module Aws
               end
             }
             bucketlifecycle_rule << type_rule
-            puts "s3 lifecycle rules add... bucket:#{bucketname} prefix:#{hostname}/pack/#{ctid}/ expire_limit:#{archive}"
+            puts "s3 lifecycle rule add... bucket:#{bucketname} prefix:#{hostname}/pack/#{ctid}/ expire_limit:#{archive}"
             resp = bucketlifecycle.put({lifecycle_configuration:{rules: bucketlifecycle_rule}})
             if resp.successful?
-              puts "s3 lifecycle compleated!"
+              puts "s3 lifecycle rule add compleated!"
             else
-              puts "s3 lifecycle failed!"
+              puts "s3 lifecycle rule add failed!"
             end
           end
         end
       end
 
-    end
   end
 end

@@ -3,7 +3,6 @@ module Aws
     module Kammy
 
       class Ask < Object
-        class << self
           def ask(msg, var)
             puts "[?] #{msg}"
             while true do
@@ -15,7 +14,6 @@ module Aws
               end
             end
           end
-        end
       end
 
     end
