@@ -4,7 +4,7 @@ module Aws
 
       class S3
           def add_lifecycle(bucketname, ctid, hostname, archive)
-            bucketlifecycle = Aws::S3::BucketLifecycle.new(bucketname)
+            bucketlifecycle = Aws::S3::BucketLifecycle.new(bucketname, options = :logger => Logger.new("/root/logs/#{ctid}.log"), :http_wire_trace => true)
             bucketlifecycle.load
             bucketlifecycle_rule = bucketlifecycle.rules
             type_rule =  Aws::S3::Types::Rule.new({
